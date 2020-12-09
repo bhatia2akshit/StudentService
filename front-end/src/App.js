@@ -9,6 +9,37 @@ class App extends Component {
     this.state = {students: []};
   }
 
+    showForm = () => {
+    const Students = this.state.students;
+   return (
+     <div> 
+    <form id= "add-app">
+		<Table>
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Mtr. Number</th>
+          <th>Address</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr scope = "row">
+      	<td>
+      		<input type="text" value={Students.firstName}/>
+      	</td>
+      </tr>
+      
+      
+      </tbody>
+        </Table>
+
+         <button>Create</button>
+      </form>
+      </div>
+    );}
+
+
   componentDidMount(){
     
      fetch("/students", {
@@ -41,7 +72,8 @@ class App extends Component {
         </tr>
       );
     });
-
+    
+    
     return (
       <div>
         <Container fluid>
@@ -57,9 +89,12 @@ class App extends Component {
       <tbody>{StudentList}</tbody>
     </Table>
         </Container>
+        <button  onClick={() => this.setState({showForm: true}) }>Update</button>
+        
       </div>
     );
   }
 }
+    
 
 export default App;
